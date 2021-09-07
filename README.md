@@ -1,11 +1,11 @@
 # Nginx + CA_Cert Auth
-Simple steps to create your CA cert, make some user certs and config your nginx to use all this stuff.
-Don't forget passwords you provide! Make a note on stick and place it under your keyboard ;)
+There are several simple steps to create your CA and user certs and config your nginx to use all this stuff.
+Don't forget passwords you provide! Write them down to the sticknote and place it under your keyboard ;)
 
 This note is based on [this](https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/). Just a shorter one.
 
-## Generating CA authority and cert
-This should be done once:  
+## Generating a CA authority and a cert
+This step should be done once:  
 ```
 openssl genrsa -des3 -out ca.key 4096 #  
 openssl req -new -x509 -days 365 -key ca.key -out ca.crt  
@@ -23,28 +23,28 @@ openssl pkcs12 -export -out user.pfx -inkey user.key -in user.crt -certfile ca.c
 Send the .pfx certs to clients, don't forget about passwords!
 
 ## Configuring nginx
-Now you can configure your Nginx server to work with certs. Add these your nginx config file:
+Now you can configure your Nginx server for working with certs. Add these to your nginx config file:
 To "Server" block:  
 ```
 server {
      listen 443 ssl;  
      server_name example.com;  
      # Some ssl cert, not connected to this article. Google it)   
-     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;  
+     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;  
 
      #Auth block:  
-     ssl_client_certificate /etc/nginx/client_certs/ca.crt; 
+     ssl_client_certificate /etc/nginx/client_certs/ca.crt;      # Add this
      # make verification optional, so we can display a 403 message to those  
      # who fail authentication  
-     ssl_verify_client optional;</code>  
+     ssl_verify_client optional;                                 # Add this
 ```
 To "location" block:  
 ```
 location / {  
-      if ($ssl_client_verify != SUCCESS) \{  
-        return 403;  
-        #your extra code here  
+      if ($ssl_client_verify != SUCCESS) {   # Add this
+        return 403;                          # Add this
+        #your extra code here                # Add this
       }
 ```
 Done! Restart Nginx and visit https to check if dat works!
