@@ -1,5 +1,5 @@
 # Nginx + CA_Cert Auth
-There are several simple steps to create your CA and user certs and config your nginx to use all this stuff.
+Several simple steps to create your CA and user certs and config your nginx to use all this stuff.
 Don't forget passwords you provide! Write them down to the sticknote and place it under your keyboard ;)
 
 This note is based on [this](https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/). Just a shorter one.
