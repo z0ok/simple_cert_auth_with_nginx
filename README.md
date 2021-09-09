@@ -7,8 +7,8 @@ This note is based on [this](https://fardog.io/blog/2017/12/30/client-side-certi
 ## Generating a CA authority and a cert
 This step should be done once:  
 ```
-openssl genrsa -des3 -out ca.key 4096 #  
-openssl req -new -x509 -days 365 -key ca.key -out ca.crt  
+openssl genrsa -des3 -out ca.key 4096
+openssl req -new -x509 -days 365 -key ca.key -out ca.crt
 ```
 Copy ca.crt file to your nginx server.
 
