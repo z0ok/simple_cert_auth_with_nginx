@@ -48,3 +48,5 @@ location / {
       }
 ```
 Done! Restart Nginx and visit https to check if dat works!
+
+UPD: Fun fact: if you set same Organization name for CA and Client certs, Nginx will give you 400 error.
