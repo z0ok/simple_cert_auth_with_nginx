@@ -4,6 +4,10 @@ Don't forget passwords you provide! Write them down to the sticknote and place i
 
 This note is based on [this](https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/). Just a shorter one.
 
+## Important note for MacOS users
+
+If you are going to use this algo for MacOS, you have to generate it with ciphers, that Mac can use. Default algos (used by debians, etc) - are not compatible. Either generate certs and CA on MacOS, or look for algo, that can be used by mac.
+
 ## Generating a CA authority and a cert
 This step should be done once:  
 ```
