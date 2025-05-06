@@ -8,6 +8,13 @@ This note is based on [this](https://fardog.io/blog/2017/12/30/client-side-certi
 
 If you are going to use this algo for MacOS, you have to generate it with ciphers, that Mac can use. Default algos (used by debians, etc) - are not compatible. Either generate certs and CA on MacOS, or look for algo, that can be used by mac.
 
+Or, generate cert with legacy option:
+
+```
+openssl pkcs12 -in user.pfx -nodes -legacy -out user.tmp 
+openssl pkcs12 -in user.tmp -export -out mac_user.pfx -legacy
+```
+
 ## Generating a CA authority and a cert
 This step should be done once:  
 ```
